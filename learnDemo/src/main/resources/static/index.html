@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>主页</title>
+    <meta name="description" content="这是一个 主页 页面">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/public.js"></script>
+</head>
+<script type="text/javascript">
+    function deleteRomeType(id) {
+      $.ajax({
+        url: "/hotel/room-type/"+id,
+        type:'delete',
+        success: function(res, type){
+          if(res.code === 0){
+            alert(res.data+"删除成功");
+            window.location.reload();
+          }else {
+            alert("错误代码："+res.code+" 错误原因："+res.msg);
+          }
+        }
+      })
+    }
+    function submitRomeType(){
+      $.ajax({
+        url:"/hotel/room-type",
+        type:"POST",
+        dataType:"JSON",
+        contentType: "application/json",
+        headers:{
+        },
+        data: getFormData(),
+        success: function(res,type){
+          console.log(res,type)
+          if(res.code === 0){
+            alert("新增成功");
+            window.location.reload();
+          }else if(res.code === 1062){
+            alert("错误代码："+res.code+" 错误原因："+res.msg);
+          }else {
+            alert("错误代码："+res.code+" 错误原因："+res.msg);
+          }
+        },
+      })
+    }
+    function allRoomType(){
+      $.ajax({
+        url:"/hotel/room-type",
+        type:"get",
+        success:function(res,type){
+          if(res.code !== 0 ){
+            alert("错误代码："+res.code+" 错误原因："+res.msg);
+            return;
+          }
+          let total="";
+          window.alert("all room type request success");
+          let temp  = res.data
+          for(let i=0; i < temp.length; i++){
+            let t="<tr>"
+            t+="<td>"+temp[i].typeId+"</td>";
+            t+="<td>"+temp[i].roomType+"</td>";
+            t+="<td>"+temp[i].price+"</td>";
+            t+="<td>"+temp[i].bedNum+"</td>";
+            t+="<td>"+temp[i].bedSize+"</td>";
+            t+="<td>" +
+                "<button onclick='deleteRomeType("+temp[i].typeId+")'>删除房间类型</button>"
+            t+="</tr>";
+            total+=t;
+          }
+          console.log(total);
+          console.log($("#roomType"));
+          $("#roomType").append(total);
+        }
+      })
+    }
+    window.onload = function(){
+      allRoomType();
+    }
+</script>
+<body data-type="login">
+<div class="">
+    <div>
+        <a href="http://localhost:8080/swagger-ui.html">前往API文档</a>
+        <a href="/login.html">前往登录</a>
+        <a href="/regist.html">前往注册</a>
+    </div>
+    <hr>
+    <div>新增需要登录，删除需要管理员权限。</div>
+    <hr>
+   <div>
+       <h3>新增房间</h3>
+       <form id="formData" onsubmit="return preventDefault()">
+           床数量:<input name="bedNum" type="number" max="5" min="1"><br>
+           每日价格:<input placeholder="例如123.99" name="price" type="text"><br>
+           是否有窗户:<input name="window" type="radio" value="1">是
+           <input name="window" type="radio" value="0">否<br>
+           房间类型:<input placeholder="例如：大床房" name="roomType" type="text"><br>
+           <button onclick="submitRomeType()">确认提交</button>
+       </form>
+       <hr>
+       <h3>房间列表</h3>
+       <table id="roomType">
+           <tr>
+               <th>房间类型ID</th>
+               <th>房间种类</th>
+               <th>价格</th>
+               <th>床数量</th>
+               <th>床宽</th>
+               <th>操作</th>
+           </tr>
+       </table>
+   </div>
+</div>
+</body>
+
+</html>

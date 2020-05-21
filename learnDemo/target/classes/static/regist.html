@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>注册</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/public.js"></script>
+</head>
+<script type="text/javascript">
+  function submitWorkerRegister(){
+    alert("123")
+    $.ajax({
+      url:"/hotel/worker-info",
+      type: "post",
+      data: getFormData(),
+      contentType: "application/json",
+      success: function (res,type) {
+        if (res.code === 0){
+          alert("注册成功，进入登录页面");
+        }else {
+          alert("错误代码："+res.code+" 错误原因："+res.msg);
+        }
+      }
+    })
+  }
+</script>
+<body>
+<!--"gender": "string",-->
+<!--"name": "string",-->
+<!--"password": "string",-->
+<!--"phone": "string",-->
+<!--"role": "string",-->
+<!--"username": "string"-->
+<div>
+    <a href="http://localhost:8080/swagger-ui.html">前往API文档</a>
+    <a href="/login.html">前往登录</a>
+    <a href="/regist.html">前往注册</a>
+    <a href="/">前往主页</a>
+</div>
+<hr>
+    <form id="formData" onsubmit="return preventDefault()">
+        name:<input name="name" type="text"><br>
+        gender:<input name="gender" type="radio" value="女">男
+        <input name="gender" type="radio" value="男">女<br>
+        role:<input name="role" type="radio" value="admin">admin
+        <input name="role" type="radio" value="ordinary">ordinary<br>
+        username:<input name="username" type="text"><br>
+        phone:<input name="phone" type="text"><br>
+        password:<input name="password" type="password"><br>
+        <button onclick="submitWorkerRegister()">确定注册</button>
+    </form>
+</body>
+</html>
