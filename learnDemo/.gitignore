@@ -1,4 +1,6 @@
-dist
-target
+dist/
+target/
 learnDemo.iml
-.idea
+.idea/*
+dafangLearn.git/
+
