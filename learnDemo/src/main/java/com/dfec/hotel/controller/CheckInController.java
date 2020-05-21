@@ -35,5 +35,9 @@ public class CheckInController {
         List<CheckIn> list = checkInService.list();
         return R.ok(list);
     }
+    @RequestMapping(method = RequestMethod.POST)
+    public R addCheckIn(){
+       return null;
+    }
 
 }

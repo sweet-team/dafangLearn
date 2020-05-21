@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="45d86bb1-e4ae-4d1e-8e57-9fdcf2baf921" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/dfec/hotel/controller/CheckInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/dfec/hotel/controller/CheckInController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +145,7 @@
       <updated>1589786657786</updated>
       <workItem from="1589786662545" duration="28609000" />
       <workItem from="1589846621049" duration="41806000" />
-      <workItem from="1589933478821" duration="35926000" />
+      <workItem from="1589933478821" duration="36018000" />
     </task>
     <servers />
   </component>
