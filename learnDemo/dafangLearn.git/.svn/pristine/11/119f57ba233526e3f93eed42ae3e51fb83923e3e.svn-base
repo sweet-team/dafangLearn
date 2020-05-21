@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/public.js"></script>
+</head>
+<script type="text/javascript">
+      let username = $("input[name='username']").value;
+      let password = $("input[name='password']").value;
+    function login() {
+        $.ajax({
+          url:"/hotel/worker-info/login",
+          data:$('#formData').serialize(),
+          type:"post",
+          success: function(res, type){
+            console.log(res)
+            if(res.code === 0){
+              alert("已登录")
+            }else {
+              alert("错误代码："+res.code+" 错误原因："+res.msg);
+            }
+          }
+        })
+    }
+</script>
+<body>
+<div>
+    <a href="http://localhost:8080/swagger-ui.html">前往API文档</a>
+    <a href="/login.html">前往登录</a>
+    <a href="/regist.html">前往注册</a>
+    <a href="/">前往主页</a>
+</div>
+<hr>
+<form id="formData" onsubmit=" return preventDefault()">
+    用户名: <input type="text" name="username">
+    密码: <input type="password" name="password">
+    <button onclick="login()">登录</button>
+</form>
+</body>
+</html>
